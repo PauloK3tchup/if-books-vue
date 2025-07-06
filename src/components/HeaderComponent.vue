@@ -15,10 +15,10 @@ import { RouterLink } from 'vue-router'
         <input type="text" class="search" placeholder="Buscar..." />
       </div>
       <ul>
-        <li>Termos</li>
-        <li>Equipe</li>
-        <li>Envio</li>
-        <li>Devoluções</li>
+        <li><router-link to="/termos">Termos</router-link></li>
+        <li><router-link to="/equipe">Equipe</router-link></li>
+        <li><router-link to="/envio">Envio</router-link></li>
+        <li><router-link to="/devolucoes">Devoluções</router-link></li>
       </ul>
       <ul class="icons">
         <li>
