@@ -39,7 +39,7 @@ const cartStore = useCartStore()
                 </button>
               </div>
             </td>
-            <td class="cart-item-subtotal">R$ {{ book.price.toFixed(2) }}</td>
+            <td class="cart-item-subtotal">R$ {{ (book.price * book.quantity).toFixed(2) }}</td>
           </tr>
         </tbody>
       </table>
