@@ -6,14 +6,38 @@ export const useCartStore = defineStore('cart', () => {
     items: [],
     total: 0,
   })
-  function addToCart(book) {
-    alert(book.title + " foi adicionado ao carrinho!")
-    this.cart.items.push(book)
-    this.cart.total += book.price
-    console.log(this.cart)
+
+  function decrementBookToCart(book) {
+    const existingBook = cart.value.items.find((item) => item.id === book.id)
+    if (existingBook.quantity === 1) {
+      cart.value.items = cart.value.items.filter((item) => item.id !== book.id)
+    } else {
+      existingBook.quantity--
+    }
+    cart.value.total -= book.price
   }
+
+  function incrementBookToCart(book) {
+    const existingBook = cart.value.items.find((item) => item.id === book.id)
+    existingBook.quantity++
+    cart.value.total += book.price
+  }
+
+  function addToCart(book) {
+    const existingBook = cart.value.items.find((item) => item.id === book.id)
+    if (existingBook) {
+      existingBook.quantity++
+    } else {
+      cart.value.items.push({ ...book, quantity: 1 })
+    }
+    cart.value.total += book.price
+    alert(`Adicionado ${book.title} ao carrinho!`)
+  }
+
   return {
     cart,
+    incrementBookToCart,
+    decrementBookToCart,
     addToCart,
   }
 })

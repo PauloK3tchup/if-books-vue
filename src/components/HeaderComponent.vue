@@ -3,10 +3,10 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-<header>
+  <header>
     <nav>
       <h1>
-       <router-link to="/">
+        <router-link to="/">
           IFbooks
           <span class="logo-title"> Apreço a livros </span>
         </router-link>
@@ -23,7 +23,6 @@ import { RouterLink } from 'vue-router'
       <ul class="icons">
         <li>
           <router-link to="/cart"><span class="mdi mdi-cart"></span></router-link>
-
         </li>
         <li><span class="mdi mdi-heart"></span></li>
         <li><span class="mdi mdi-account"></span></li>
@@ -33,6 +32,10 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style scoped>
+a {
+  text-decoration: none;
+  color: inherit;
+}
 header nav {
   display: flex;
   justify-content: space-between;

@@ -17,6 +17,9 @@ const cartStore = useCartStore()
           </tr>
         </thead>
         <tbody>
+          <p class="aviso" v-if="cartStore.cart.items.length <= 0">
+            Você não adicionou nada ao carrinho.
+          </p>
           <tr v-for="book in cartStore.cart.items" :key="book.id">
             <td class="cart-item">
               <img :src="book.cover" :alt="book.title" />
@@ -28,8 +31,12 @@ const cartStore = useCartStore()
             </td>
             <td>
               <div class="cart-item-quantity">
-                <button class="plain"><span class="mdi mdi-minus"></span></button> 1
-                <button class="plain"><span class="mdi mdi-plus"></span></button>
+                <button @click="cartStore.decrementBookToCart(book)" class="plain">
+                  <span class="mdi mdi-minus"></span></button
+                >{{ book.quantity }}
+                <button @click="cartStore.incrementBookToCart(book)" class="plain">
+                  <span class="mdi mdi-plus"></span>
+                </button>
               </div>
             </td>
             <td class="cart-item-subtotal">R$ {{ book.price.toFixed(2) }}</td>
@@ -56,6 +63,12 @@ const cartStore = useCartStore()
 </template>
 
 <style>
+p.aviso {
+  font-size: 1.2rem;
+  color: #27ae60;
+  margin: 30px 0;
+}
+
 .cart {
   display: flex;
   flex-direction: column;
